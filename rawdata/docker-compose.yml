@@ -1,0 +1,59 @@
+
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql_db
+    ports:
+      - "1433:1433"
+    environment:
+      # 🚨 SQL Server Configuration: CHANGE PASSWORD! 🚨
+      - SA_PASSWORD=YourStrong!Passw0rd
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Developer
+    volumes:
+      - sqldata:/var/opt/mssql # Persistent storage for SQL data
+    networks:
+      - dataplatform_net
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_events
+    ports:
+      - "27017:27017"
+    environment:
+      # MongoDB doesn't require a password by default for dev, but can be added.
+      - MONGO_INITDB_DATABASE=events_db
+    volumes:
+      - mongodata:/data/db # Persistent storage for MongoDB data
+    networks:
+      - dataplatform_net
+
+  # data-generator:
+  #   build: . # Requires local Dockerfile and requirements.txt
+  #   container_name: data_generator
+  #   depends_on:
+  #     - mssql
+  #     - mongodb
+  #   environment:
+  #     # --- SQL Server Connection Details ---
+  #     - SQL_SERVER=mssql 
+  #     - SQL_DB_NAME=EcommerceDB
+  #     - SQL_DB_USER=SA
+  #     - SQL_DB_PASSWORD=iit1233
+
+  #     # --- MongoDB Connection Details ---
+  #     - MONGO_HOST=mongodb
+  #     - MONGO_PORT=27017
+  #     - MONGO_DB_NAME=events_db
+    # networks:
+    #   - dataplatform_net
+  #   # Use 'tail -f /dev/null' to keep the container running for manual execution
+  #   command: tail -f /dev/null
+
+volumes:
+  sqldata:
+  mongodata:
+
+networks:
+  dataplatform_net:
+    driver: bridge

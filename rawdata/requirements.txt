@@ -1,0 +1,11 @@
+# SQL Server connection
+pyodbc
+
+# MongoDB connection
+pymongo
+
+# Data generation
+Faker
+
+# Data handling
+pandas
