@@ -1,0 +1,31 @@
+spark:
+ jar_directory : /home/sh/spark-3.3.1-bin-hadoop3/jars/*
+
+
+datasource:
+   sqlserver_local:
+     url : jdbc:sqlserver://localhost:1433;databaseName=
+     username : SA
+     password : YourStrong!Passw0rd
+     database : model
+     driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
+     tables:
+       Customers:
+         schema: raw
+       ProductCatalog:
+         schema: raw
+       Orders:
+         schema: raw
+
+   
+   postgres_local:
+     url : jdbc:postgresql://localhost:5432/ecommerce_dw
+     host : localhost
+     port : 5432
+     database : ecommerce_dw
+     username : postgres
+     password : postgres
+     driver: org.postgresql.Driver
+
+
+

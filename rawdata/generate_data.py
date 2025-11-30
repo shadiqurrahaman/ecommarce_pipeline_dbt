@@ -11,7 +11,7 @@ import json
 
 # SQL Server
 SQL_SERVER = os.environ.get('SQL_SERVER', 'localhost')
-SQL_DB_NAME = os.environ.get('SQL_DB_NAME', 'EcommerceDB')
+SQL_DB_NAME = os.environ.get('SQL_DB_NAME', 'model')
 SQL_DB_USER = os.environ.get('SQL_DB_USER', 'SA')
 SQL_DB_PASSWORD = os.environ.get('SQL_DB_PASSWORD', 'YourStrong!Passw0rd')
 

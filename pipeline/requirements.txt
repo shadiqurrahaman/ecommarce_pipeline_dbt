@@ -1,0 +1,5 @@
+pkg_resources
+pyspark=3.3.1
+setuptools
+yaml
+psycopg2-binary

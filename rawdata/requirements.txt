@@ -9,3 +9,5 @@ Faker
 
 # Data handling
 pandas
+
+pyspark

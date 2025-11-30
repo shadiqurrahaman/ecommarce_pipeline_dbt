@@ -1,0 +1,183 @@
+spark:
+ jar_directory : /home/AzureUser/projects/jars/*
+
+
+
+moc:
+ moc_production_blob:
+     #stage credential
+     #storageConnectionString: DefaultEndpointsProtocol=https;AccountName=imgalibstorage;AccountKey=TsP3FLzROBOTPmIc5a7Fv4XY9m1uEwxucj/XgNg4JlkooMyHEWbHacegg2641lfaROVHvqqj5YJFPch2SLskZA==   
+     #containerName: humana-qa-weekly-export
+
+     #live credential
+     storageConnectionString: DefaultEndpointsProtocol=https;AccountName=insightinvault;AccountKey=jPfjoeSIKHOrnLAbaJZCq6XPws0qEpEs5pRqfY4y1pRY9m/YCDNz6rAYsUri14w41R/wyqHKrxcqfFUHi0QRUA==;EndpointSuffix=core.windows.net   
+     containerName : private
+     blob_directory_path : Member Data/Gateway/08152021/
+     local_download_location : /datadrive/moc/
+
+ postgresql:
+     url : jdbc:postgresql://insightin-postgresql.postgres.database.azure.com:5432/GatewayStaging
+     username : InsightinPostgre@insightin-postgresql
+     password : inS@21ght 
+     port : 5432 
+     database : GatewayStaging
+     host : insightin-postgresql.postgres.database.azure.com
+     driver: org.postgresql.Driver
+     posgres_jar_path : /home/AzureUser/projects/jars/*
+
+ mongodb:
+     connectionString : mongodb://insight:VVoG2livbgY2bG0F@azure-west-us-live-shard-00-00.kpupq.azure.mongodb.net:27017,azure-west-us-live-shard-00-01.kpupq.azure.mongodb.net:27017,azure-west-us-live-shard-00-02.kpupq.azure.mongodb.net:27017/gateway.MemberEnrollmentInfos?ssl=true&replicaSet=atlas-102pan-shard-0&authSource=admin
+     db_name: gateway
+     live_collectionName : MemberEnrollmentInfos
+     sync_collectionName : MemberEnrollmentInfosTemp
+     mongo_jar_path : /home/AzureUser/projects/jars/*
+
+ email:
+    host: smtp.office365.com
+    port: 587
+    username: noreply@insightinhealth.com
+    password: Jaj27872 
+    sender_email: noreply@insightinhealth.com 
+    receivers_emails: [jkader@insightintechnology.com] 
+
+humana:
+  humana_production_blob:
+    #storageConnectionString: DefaultEndpointsProtocol=https;AccountName=imgalibstorage;AccountKey=TsP3FLzROBOTPmIc5a7Fv4XY9m1uEwxucj/XgNg4JlkooMyHEWbHacegg2641lfaROVHvqqj5YJFPch2SLskZA==   
+    #stage credential
+    #containerName: humana-qa-weekly-export
+
+    #live credential
+    storageConnectionString: DefaultEndpointsProtocol=https;AccountName=insightinvault;AccountKey=jPfjoeSIKHOrnLAbaJZCq6XPws0qEpEs5pRqfY4y1pRY9m/YCDNz6rAYsUri14w41R/wyqHKrxcqfFUHi0QRUA==;EndpointSuffix=core.windows.net   
+    containerName : private   
+    # manual process
+    #blob_directory_path : HumanaRetail/MVP2_prod_09232021 
+    # automate process 
+    blob_directory_path : HumanaRetail/MVP2_prod_  
+    is_manual : False
+    number_of_days : 1
+    local_download_location : /datadrive/humana/
+  humana_production_blob_extend:
+    #live credential
+    storageConnectionString: DefaultEndpointsProtocol=https;AccountName=insightinvault;AccountKey=jPfjoeSIKHOrnLAbaJZCq6XPws0qEpEs5pRqfY4y1pRY9m/YCDNz6rAYsUri14w41R/wyqHKrxcqfFUHi0QRUA==;EndpointSuffix=core.windows.net   
+    containerName : private   
+    # manual process
+    # blob_directory_path_w1 : HumanaRetail/MVP2_prod_12162021
+    # blob_directory_path_w2 : HumanaRetail/MVP2_prod_12132021
+    # automate process  
+    blob_directory_path : HumanaRetail/MVP2_prod_ 
+    is_manual : False     
+    number_of_days_w1 : 5
+    number_of_days_w2 : 1
+    local_download_location : /datadrive/humana/
+  sqlServer:
+    url : jdbc:sqlserver://humana.database.windows.net:1433;databaseName=
+    username : humana@health@humana
+    password : inS@19ght2022
+    database : HumanaM
+    driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+  mongodb:
+    connectionString : mongodb://insight:VVoG2livbgY2bG0F@azure-west-us-live-shard-00-00.kpupq.azure.mongodb.net:27017,azure-west-us-live-shard-00-01.kpupq.azure.mongodb.net:27017,azure-west-us-live-shard-00-02.kpupq.azure.mongodb.net:27017/humanaM.MeasureTooltip?ssl=true&replicaSet=atlas-102pan-shard-0&authSource=admin
+    db_name: humana
+
+  email:
+    host: smtp.office365.com
+    port: 587
+    username: noreply@insightinhealth.com
+    password: Jaj27872 
+    sender_email: noreply@insightinhealth.com 
+    receivers_emails: [jkader@insightintechnology.com,zabadin@insightintechnology.com]
+
+
+#----------------------------Config for Emergient----------------------
+
+decrypt:
+  public_key : keys/InsightinHealth_0x4B1019E2_public.asc
+  private_key : keys/InsightinHealth_0x4B1019E2_SECRET.asc
+
+EmergientNBND:
+  blob_location:
+    #stage credential
+    storageConnectionString: DefaultEndpointsProtocol=https;AccountName=insightinvault;AccountKey=jPfjoeSIKHOrnLAbaJZCq6XPws0qEpEs5pRqfY4y1pRY9m/YCDNz6rAYsUri14w41R/wyqHKrxcqfFUHi0QRUA==;EndpointSuffix=core.windows.net
+    containerName : private
+    blob_directory_path : Emergient/NBND/V1_05272023/
+    is_manual : False
+    number_of_days : 1
+    local_download_location : /home/sh/Desktop/tempfile/
+    converted_location : ConvertedCsv
+    url: [
+        https://insightinvault.blob.core.windows.net/private/Emergient/inGage_Internal/Key_features_output_status_04042023.csv
+     ]
+
+  server_info:
+    url : jdbc:sqlserver://ingage-elstic-pool.database.windows.net:1433;databaseName=Production-Emergient-NBND
+    username : ingage@health@ingage-elstic-pool
+    password : inS@ght2022sqlpool
+    database : Production-Emergient-NBND
+    driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+  sqlServerLocal:
+    url : jdbc:sqlserver://localhost:1433;databaseName=Demo
+    username : sa
+    password : Shadiqur@134#
+    database : Demo
+    driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+
+
+
+EmergientVBA:
+  blob_location:
+    #stage credential
+    storageConnectionString: DefaultEndpointsProtocol=https;AccountName=insightinvault;AccountKey=jPfjoeSIKHOrnLAbaJZCq6XPws0qEpEs5pRqfY4y1pRY9m/YCDNz6rAYsUri14w41R/wyqHKrxcqfFUHi0QRUA==;EndpointSuffix=core.windows.net
+    containerName : private
+    blob_directory_path : Emergient/VBA/nbnd_prod_04172023/
+    is_manual : False
+    number_of_days : 1
+    local_download_location : /home/sh/Desktop/tempfile/
+    converted_location : ConvertedCsv
+    url: [
+        https://insightinvault.blob.core.windows.net/private/Emergient/inGage_Internal/Key_features_output_status_04042023.csv
+     ]
+
+  server_info:
+    url : jdbc:sqlserver://ingage-elstic-pool.database.windows.net:1433;databaseName=Production-Emergient-VBA
+    username : ingage@health@ingage-elstic-pool
+    password : inS@ght2022sqlpool
+    database : Production-Emergient-VBA
+    driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+  sqlServerLocal:
+    url : jdbc:sqlserver://localhost:1433;databaseName=Employeesinfo
+    username : sa
+    password : Shadiqur@134#
+    driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+EmergientWAHP:
+  blob_location:
+    #stage credential
+    storageConnectionString: DefaultEndpointsProtocol=https;AccountName=insightinvault;AccountKey=jPfjoeSIKHOrnLAbaJZCq6XPws0qEpEs5pRqfY4y1pRY9m/YCDNz6rAYsUri14w41R/wyqHKrxcqfFUHi0QRUA==;EndpointSuffix=core.windows.net
+    containerName : private
+    blob_directory_path : Emergient/WAHP/nbnd_prod_04172023/
+    is_manual : False
+    number_of_days : 1
+    local_download_location : /home/sh/Desktop/tempfile/
+    converted_location : ConvertedCsv
+    url: [
+        https://insightinvault.blob.core.windows.net/private/Emergient/inGage_Internal/Key_features_output_status_04042023.csv
+     ]
+
+  server_info:
+    url : jdbc:sqlserver://ingage-elstic-pool.database.windows.net:1433;databaseName=Production-Emergient-WAHP
+    username : ingage@health@ingage-elstic-pool
+    password : inS@ght2022sqlpool
+    database : Production-Emergient-WAHP
+    driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+
+  sqlServerLocal:
+    url : jdbc:sqlserver://localhost:1433;databaseName=HumanaM
+    username : sa
+    password : Shadiqur@134#
+    driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
